@@ -54,8 +54,8 @@ function animate(){
 
    function makeBalls(){
      for(let i = 0; i<10;i++){
-       randomX = Math.random()* (1900+1900)-1900;
-       randomY = Math.random() * (1000+1000)-1000;
+       randomX = Math.random()* (4000+4000)-4000;
+       randomY = Math.random() * (2000+2000)-2000;
         ball.push(new Objects(randomX,randomY));
      }
 
