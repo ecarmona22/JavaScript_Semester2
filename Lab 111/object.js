@@ -1,18 +1,33 @@
-function Objects(locX, locY){
-this.locX = locX;
-this.locY = locY;
+function Objects(locX, locY,mousex,mousey){
+this.loc = new JSVector(locX,locY);
+this.direction;
 this.rad = 60;
 
 
 
 }
 
+Objects.prototype.run = function(){
+  var mouse = new JSVector(mousex,mousey);
+  mouse.add(canvasLoc);
 
-Objects.prototype.run = function () {
+
+this.direction = JSVector.subGetNew(mouse,this.loc);
+this.render();
+}
+
+
+Objects.prototype.render = function () {
+  ctx.save();
   ctx.strokeStyle = 'rgba(0,0,0,.9)';
   ctx.fillStyle = 'rgba(250,250,250,.9)';
-  ctx.fill();
+  ctx.translate(this.loc.x,this.loc.y);
+  ctx.rotate(1*this.direction.getDirection());
   ctx.beginPath();
-  ctx.arc(this.locX,this.locY,this.rad,Math.PI*2,0,false);
-  ctx.stroke();
+  ctx.moveTo(-20,-20);
+  ctx.lineTo(30,0);
+  ctx.lineTo(-20,20);
+  ctx.closePath();
+  ctx.fill();
+  ctx.restore();
 };

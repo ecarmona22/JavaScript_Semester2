@@ -4,7 +4,7 @@ window.onload = init;//  After the window has been loaded, go to init
 // global variables for canvas and context
 var canvas;
 var ctx;
-var ball;
+var objects;
 var randomX;
 var randomY;
 var mousex;
@@ -13,7 +13,7 @@ var canvasLoc;
 var center;
 
 function init(){
-  ball = [];
+  objects = [];
   //get the canvas
   canvas = document.getElementById('cnv');
   // Set the dimensions of the canvas
@@ -28,7 +28,7 @@ function init(){
   ctx = canvas.getContext('2d'); // This is the context
   canvasLoc = new JSVector(0,0);
   center = new JSVector(canvas.width/2,canvas.height/2);
-  makeBalls();
+  makeObjects();
   animate();
 }
 
@@ -41,8 +41,8 @@ function animate(){
   ctx.clearRect(0,0,canvas.width, canvas.height);
   ctx.save();
   ctx.translate(-canvasLoc.x,-canvasLoc.y);
-  for(let i = 0; i< ball.length;i++){
-      ball[i].run();
+  for(let i = 0; i< objects.length;i++){
+      objects[i].run();
   }
   ctx.restore();
   requestAnimationFrame(animate);
@@ -52,11 +52,11 @@ function animate(){
 
 
 
-   function makeBalls(){
-     for(let i = 0; i<10;i++){
+   function makeObjects(){
+     for(let i = 0; i<50;i++){
        randomX = Math.random()* (4000+4000)-4000;
        randomY = Math.random() * (2000+2000)-2000;
-        ball.push(new Objects(randomX,randomY));
+        objects.push(new Objects(randomX,randomY,mousex,mousey));
      }
 
 }
