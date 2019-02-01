@@ -43,7 +43,6 @@ function animate(){
   ctx2.save();
   ctx2.translate(4000,2000);
   ctx2.strokeStyle = "white";
-
   ctx2.lineWidth = 20;
   ctx2.beginPath();
   ctx2.moveTo(-10000,0);
