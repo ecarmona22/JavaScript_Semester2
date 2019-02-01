@@ -32,7 +32,7 @@ function init(){
   canvasLoc = new JSVector(0,0);
   ctx = canvas.getContext('2d');
   ctx2 = secondCan.getContext('2d');
-  ctx2.scale(32,16); // This is the context
+  ctx2.scale(125/8000,125/4000);
   makeobjects();
   animate();
 }
@@ -40,19 +40,23 @@ function init(){
 function animate(){
 
   ctx2.clearRect(0,0,secondCan.width,secondCan.height);
-  ctx2.save()
+  ctx2.save();
   ctx2.translate(4000,2000);
   ctx2.strokeStyle = "white";
-  ctx2.fillStyle="rgb(0,0,255,.9)";
-  // ctx2.lineWidth = 20;
+
+  ctx2.lineWidth = 20;
   ctx2.beginPath();
   ctx2.moveTo(-10000,0);
   ctx2.lineTo(10000,0);
   ctx2.moveTo(0,-10000);
   ctx2.lineTo(0,10000);
-  ctx2.rect(0,0,10,10);
   ctx2.stroke();
-  ctx2.fill();
+  //ctx2.beginPath();
+  ctx2.fillStyle = "blue";
+  ctx2.rect((canvasLoc.x),(canvasLoc.y),1000,1000);
+  // ctx2.fillRect((canvasLoc.x),canvasLoc.y,1000,1000);
+  ctx2.stroke();
+//  ctx2.closePath();
   ctx2.restore();
 
   var mouseT = new JSVector(mouseX,mouseY);
