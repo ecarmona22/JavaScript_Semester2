@@ -12,6 +12,8 @@ var cell;
 var cells;
 var rows = 20;
 var cols = 20;
+var sizeOfCell = 50;
+
 
 
 function init(){
@@ -52,7 +54,7 @@ function makeGrid(){
   for(let i = 0;i<rows;i++ ){
     cells[i] = new Array(cols);
     for(let j = 0;j<cols;j++){
-      cells[i][j] = new Cell(i*50,j*50);;
+      cells[i][j] = new Cell(i*sizeOfCell,j*sizeOfCell);;
     }
   }
 }
@@ -62,5 +64,21 @@ function mouse(event){
   mouseX = event.clientX;
   mouseY = event.clientY;
   console.log("mouse: "+mouseX+", "+mouseY);
-  var tempR =
+  var tempR = Math.trunc(mouseX/sizeOfCell);
+  var tempC = Math.trunc(mouseY/sizeOfCell);
+  console.log(tempR+","+tempC);
+  var toBeLit = [];
+  for(let i = tempR+1;i>= tempR-1;i--){
+    for(let j = tempC+1;j>= tempC-1;j--){
+      //if (cells[i][j].occupided === true){
+        cells[i][j].occupided = true;
+    //  }else{ cells[i][j].occupided = true;}
+      if(cells[i][j] === cells[tempR][tempC]){ cells[i][j].occupided = false;}
+
+    }
+  }
+
+
+
+
 }
