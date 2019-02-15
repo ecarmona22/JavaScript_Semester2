@@ -40,24 +40,27 @@ function makeGrid(){
     for(let j = 0;j<cols;j++){
       cells[i][j] = new Cell(i*sizeOfCell,j*sizeOfCell);;
     }
+
   }
+    for(let i = 0;i<rows;i++ ){
+      for(let j = 0;j<cols;j++){
+        cells[i][j].GetNeighbor(i,j);
+      }
+    }
 }
 
 
 function mouse(event){
+  var cell;
   mouseX = event.clientX;
   mouseY = event.clientY;
   console.log("mouse: "+mouseX+", "+mouseY);
   var tempR = Math.trunc(mouseX/sizeOfCell);
   var tempC = Math.trunc(mouseY/sizeOfCell);
   console.log(tempR+","+tempC);
-  var toBeLit = [];
-  for(let i = tempR+1;i>= tempR-1;i--){
-    for(let j = tempC+1;j>= tempC-1;j--){
-      //if (cells[i][j].occupided === true){
-        cells[i][j].occupided = true;
-    //  }else{ cells[i][j].occupided = true;}
-      if(cells[i][j] === cells[tempR][tempC]){ cells[i][j].occupided = false;}
-    }
+  cell = cells[tempR][tempC]
+  for(let i=0;i<cell.neighbors.length;i++){
+    cell.neighbors[i].occupided = !cell.neighbors[i].occupided;
   }
+
 }
