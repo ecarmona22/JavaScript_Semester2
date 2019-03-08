@@ -9,5 +9,10 @@ Ball.prototype.run = function (){
 }
 
 Ball.prototype.render = function () {
-  ctx.drawImage(truck,this.loc.x-truck.width/2,this.loc.y-truck.height/2);
+  if(vehicle){
+  ctx.drawImage(vehicle,this.loc.x-vehicle.width/2,this.loc.y-vehicle.height/2);
+  }
+  if (turn === true){
+    
+  }
 };

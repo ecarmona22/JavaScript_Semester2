@@ -5,16 +5,19 @@ window.onload = init;//  After the window has been loaded, go to init
 var canvas;
 var ctx;
 var ball;
-var truck;
+var vehicle;
 
 
 
 function init(){
+  var tempVehicle = document.createElement('img');
+  tempVehicle.src= "carTop.png";
+  tempVehicle.addEventListener('load', function (e){vehicle = this});
   document.addEventListener("keydown",keyHandler);
   canvas = document.getElementById('cnv');
   canvas.style.backgroundColor = 'rgba(0,0,0, .9)';
   ctx = canvas.getContext('2d');
-  truck = document.getElementById("tonka");
+
   ball = new Ball();
   animate();
 }
@@ -36,6 +39,7 @@ function keyHandler(e){
    }
    if(e.key ==="a" || e.key === "ArrowLeft"){
      ball.loc.x-=10;
+     ctx.rotate(90* Math.PI/180);
    }
    if(e.key ==="d" || e.key === "ArrowRight" ){
      ball.loc.x+=10;
